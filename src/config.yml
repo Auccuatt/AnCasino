@@ -1,9 +1,6 @@
 # AnCasino v2.0-b1
-# @author: Darazo <darazo.dawning@gmail.com>
+# @authors: [Darazo <darazo.dawning@gmail.com>, Auccuatt <auccuatt@gmail.com>]
 # @license: GPLv3
-# 
-# Instructions for this configuration file can be found at the BukkitDev page:
-# http://dev.bukkit.org/server-mods/ancasino/
   
 options:
   track-statistics: true
