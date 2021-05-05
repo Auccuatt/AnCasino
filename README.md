@@ -24,10 +24,10 @@ See config.yml on the repository for an updated file format.
 
 ### NOTE: having an action section under rewards is REQUIRED or the plugin WON'T work:
 
-# Example:
+## Example:
 
-## rewards:
-### IRON_BLOCK:
-#### action: none
-#### message: Winner - 3 iron blocks! $250 awarded.
-#### money: 250.0
+### rewards:
+#### IRON_BLOCK:
+##### action: none
+##### message: Winner - 3 iron blocks! $250 awarded.
+##### money: 250.0
