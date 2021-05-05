@@ -21,4 +21,13 @@ broadcast msg1 msg2 msg3 .....
 Configuration:
 
 See config.yml on the repository for an updated file format.
-NOTE: having an action section under rewards is REQUIRED or the plugin WON'T work.
+
+### NOTE: having an action section under rewards is REQUIRED or the plugin WON'T work:
+
+# Example:
+
+## rewards:
+### IRON_BLOCK:
+#### action: none
+#### message: Winner - 3 iron blocks! $250 awarded.
+#### money: 250.0
