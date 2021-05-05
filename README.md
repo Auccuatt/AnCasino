@@ -22,9 +22,7 @@ Configuration:
 
 See config.yml on the repository for an updated file format.
 
-### NOTE: having an action section under rewards is REQUIRED or the plugin WON'T work:
-
-## Example:
+## NOTE: having an action section under rewards is REQUIRED or the plugin WON'T work:
 
 ### rewards:
 #### IRON_BLOCK:
