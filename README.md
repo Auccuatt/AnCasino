@@ -1,4 +1,7 @@
 # AnCasino
+
+## NOTE: If you have a JDK version of 14 and below, you need to download version 1.1.1 (see other releases).
+
 AnCasino, Compatible with MC Ver. 1.16.5 after nearly 8 years out of development.
 
 The original owner has abandoned this project so I've gone to the liberty of taking it over as it's under the GNU General Public License version 3.
@@ -22,7 +25,7 @@ Configuration:
 
 See config.yml on the repository for an updated file format.
 
-## NOTE: having an action section under rewards is REQUIRED or the plugin WON'T work:
+## NOTE: Having an action section under rewards is REQUIRED or the plugin WON'T work:
 
 ### rewards:
 #### IRON_BLOCK:
