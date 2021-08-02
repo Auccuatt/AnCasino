@@ -73,7 +73,8 @@ public class SlotData
 	    if (!slots.isEmpty())
 		for (String name : slots)
 		{
-		    loadSlot(name);
+		    if(Bukkit.getWorld(this.plugin.configData.slots.getString("slots." + name + ".world")) != null)
+			loadSlot(name);
 		    i = Integer.valueOf(i.intValue() + 1);
 		}
 	}
@@ -134,8 +135,7 @@ public class SlotData
 	List<String> xyz = this.plugin.configData.slots
 		.getStringList("slots." + name + ".location");
 	ArrayList<Block> blocks = new ArrayList<Block>();
-	World world = Bukkit.getWorld(this.plugin.configData.slots
-		.getString("slots." + name + ".world"));
+	World world = Bukkit.getWorld(this.plugin.configData.slots.getString("slots." + name + ".world"));
 	for (String coord : xyz)
 	{
 	    String[] b = coord.split("\\,");

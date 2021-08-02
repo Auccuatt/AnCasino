@@ -22,10 +22,10 @@ public class CasinoType
 	if (this.args.length < 3)
 	{
 
-	    sendMessage("Usage:");
-	    sendMessage("/casino type add <type>");
+	    sendMessageDirectly("Usage:");
+	    sendMessageDirectly("/casino type add <type>");
 
-	    sendMessage("/casino type remove <type>");
+	    sendMessageDirectly("/casino type remove <type>");
 	    return Boolean.valueOf(true);
 	}
 
@@ -39,14 +39,14 @@ public class CasinoType
 	    {
 
 		this.plugin.typeData.newType(this.args[2]);
-		sendMessage("Type " + this.args[2]
+		sendMessageDirectly("Type " + this.args[2]
 			+ " created! Configure it to your needs in config.yml before using it.");
 
 	    }
 
 	} else if (this.args[1].equalsIgnoreCase("edit"))
 	{
-	    sendMessage("Not yet implemented. Edit types manually for now.");
+	    sendMessageDirectly("Not yet implemented. Edit types manually for now.");
 
 	} else if (this.args[1].equalsIgnoreCase("remove"))
 	{
@@ -54,7 +54,7 @@ public class CasinoType
 	    if (this.plugin.typeData.isType(this.args[2]).booleanValue())
 	    {
 		this.plugin.typeData.removeType(this.args[2]);
-		sendMessage("Type " + this.args[2]
+		sendMessageDirectly("Type " + this.args[2]
 			+ " removed. Make sure to update any slot machines using this type.");
 	    } else
 	    {

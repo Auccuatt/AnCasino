@@ -11,6 +11,8 @@ import me.darazo.ancasino.slot.TypeData;
 import me.darazo.ancasino.util.ConfigData;
 import me.darazo.ancasino.util.Permissions;
 import me.darazo.ancasino.util.StatData;
+import net.md_5.bungee.api.ChatMessageType;
+import net.md_5.bungee.api.chat.TextComponent;
 import net.milkbowl.vault.economy.Economy;
 
 import org.bukkit.ChatColor;
@@ -26,59 +28,51 @@ import org.bukkit.plugin.java.JavaPlugin;
 public class AnCasino extends JavaPlugin
 {
     protected AnCasino plugin;
-    public String prefix = "[AnCasino] ";
-
+    public String prefix;
+    
     private PluginDescriptionFile pdfFile;
     private AnPlayerListener playerListener = new AnPlayerListener(this);
     private AnBlockListener blockListener = new AnBlockListener(this);
 
     private AnCommandExecutor commandExecutor;
     public ConfigData configData = new ConfigData(this);
+    
     public SlotData slotData = new SlotData(this);
     public TypeData typeData = new TypeData(this);
     public StatData statsData = new StatData(this);
     public RewardData rewardData = new RewardData(this);
     public Permissions permission = new Permissions(this);
 
-    public Economy economy = null;
+    public PluginManager pm = getServer().getPluginManager();
     public final Logger logger = Logger.getLogger("Minecraft");
-
+    public Economy economy = null;
+    
     public void onDisable()
     {
-	this.logger.info(String.valueOf(this.prefix) + " Disabled.");
+	this.logger.info(String.valueOf(this.prefix) + "Disabled.");
     }
 
     public void onEnable()
     {
 	this.configData.load();
-
-	PluginManager pm = getServer().getPluginManager();
-	pm.registerEvents((Listener) this.playerListener, (Plugin) this);
-	pm.registerEvents((Listener) this.blockListener, (Plugin) this);
-
-	this.pdfFile = getDescription();
-
-	this.commandExecutor = new AnCommandExecutor(this);
-	getCommand("casino")
-		.setExecutor((CommandExecutor) this.commandExecutor);
-
-	this.logger.info(String.valueOf(this.prefix) + " v"
-		+ this.pdfFile.getVersion() + " enabled.");
-
-	if (!pm.isPluginEnabled("Vault"))
+	this.prefix = configData.prefix;
+	
+	boolean economySetup = setupEconomy();
+	if (!economySetup)
 	{
+	    pm.disablePlugin(this);
+	}
+	else
+	{	
+	    pm.registerEvents((Listener) this.playerListener, (Plugin) this);
+	    pm.registerEvents((Listener) this.blockListener, (Plugin) this);
 
-	    this.logger.warning(String.valueOf(this.prefix)
-		    + " Vault is required in order to use this plugin.");
-	    this.logger.warning(String.valueOf(this.prefix)
-		    + " dev.bukkit.org/server-mods/vault/");
-	    pm.disablePlugin((Plugin) this);
+	    this.pdfFile = getDescription();
 
-	} else if (!setupEconomy().booleanValue())
-	{
-	    this.logger.warning(String.valueOf(this.prefix)
-		    + " An economy plugin is required in order to use this plugin.");
-	    pm.disablePlugin((Plugin) this);
+	    this.commandExecutor = new AnCommandExecutor(this);
+	    getCommand("casino").setExecutor((CommandExecutor) this.commandExecutor);
+	    
+	    this.logger.info(String.valueOf(this.prefix) + "v" + this.pdfFile.getVersion() + " enabled.");
 	}
     }
 
@@ -90,20 +84,44 @@ public class AnCasino extends JavaPlugin
 	ChatColor pColorCode = ChatColor.getByChar(prefixColorCode.charAt(1));
 	ChatColor cColorCode = ChatColor.getByChar(chatColorCode.charAt(1));
 	
-	message = pColorCode + this.prefix + cColorCode + message;
+	if(this.configData.displayPrefix)
+	    message = pColorCode + this.prefix + cColorCode + message;
+	else
+	    message = cColorCode + message;
+	player.spigot().sendMessage(ChatMessageType.ACTION_BAR, new TextComponent(message));
+    }
+    
+    public void sendMessageDirectly(Player player, String message)
+    {
+	String prefixColorCode = this.configData.prefixColor;
+	String chatColorCode = this.configData.chatColor;
+	
+	ChatColor pColorCode = ChatColor.getByChar(prefixColorCode.charAt(1));
+	ChatColor cColorCode = ChatColor.getByChar(chatColorCode.charAt(1));
+	
+	if(this.configData.displayPrefix)
+	    message = pColorCode + this.prefix + cColorCode + message;
+	else
+	    message = cColorCode + message;
 	player.sendMessage(message);
     }
-
-    private Boolean setupEconomy()
+    
+    private boolean setupEconomy()
     {
-	RegisteredServiceProvider<Economy> economyProvider = getServer()
-		.getServicesManager().getRegistration(Economy.class);
-	if (economyProvider != null)
-	{
-	    this.economy = (Economy) economyProvider.getProvider();
-	}
-
-	return (this.economy != null) ? Boolean.valueOf(true)
-		: Boolean.valueOf(false);
+	 if (pm.getPlugin("Vault") == null) 
+	 {
+	     this.logger.warning(String.valueOf(this.prefix) 
+		     + ChatColor.LIGHT_PURPLE + "WARNING: Vault is required to manage balances in order to use AnCasino, please download Vault.");
+	     return false;
+	 }
+	 RegisteredServiceProvider<Economy> econProvider = getServer().getServicesManager().getRegistration(Economy.class);
+	 if (econProvider == null) 
+	 {
+	     this.logger.warning(String.valueOf(this.prefix) 
+		     + ChatColor.LIGHT_PURPLE + "WARNING: An Economy plugin that stores balances (like EssentialsX) is required as AnCasino does not have it's own Economy.");
+	     return false;
+	 }
+	 economy = econProvider.getProvider();
+	 return econProvider != null;
     }
 }

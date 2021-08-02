@@ -21,7 +21,7 @@ public class CasinoReload
 
 	this.plugin.configData.load();
 
-	sendMessage("Configuration reloaded");
+	sendMessageDirectly("Configuration reloaded");
 	return Boolean.valueOf(true);
     }
 }

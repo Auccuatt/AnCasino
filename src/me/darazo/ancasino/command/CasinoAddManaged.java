@@ -85,20 +85,20 @@ public class CasinoAddManaged
 		SlotMachine slot = new SlotMachine(this.name, this.type,
 			this.owner, this.world, Boolean.valueOf(true));
 		this.plugin.slotData.toggleCreatingSlots(this.player, slot);
-		this.plugin.sendMessage(this.player,
+		this.plugin.sendMessageDirectly(this.player,
 			"Punch a block to serve as the base for this slot machine.");
 
 	    } else
 	    {
-		this.plugin.sendMessage(this.player, "Slot machine "
+		this.plugin.sendMessageDirectly(this.player, "Slot machine "
 			+ this.args[1] + " already registered.");
 	    }
 
 	} else
 	{
 
-	    this.plugin.sendMessage(this.player, "Usage:");
-	    this.plugin.sendMessage(this.player, "/casino add <name> (<type>)");
+	    this.plugin.sendMessageDirectly(this.player, "Usage:");
+	    this.plugin.sendMessageDirectly(this.player, "/casino add <name> (<type>)");
 	}
 	return Boolean.valueOf(true);
     }

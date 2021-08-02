@@ -94,13 +94,13 @@ public class CasinoSlot
 		if (this.slot.isManaged().booleanValue())
 		{
 		    this.slot.setManaged(Boolean.valueOf(false));
-		    sendMessage(String.valueOf(this.slot.getName())
+		    sendMessageDirectly(String.valueOf(this.slot.getName())
 			    + " is now unmanaged.");
 		} else
 		{
 
 		    this.slot.setManaged(Boolean.valueOf(true));
-		    sendMessage(String.valueOf(this.slot.getName())
+		    sendMessageDirectly(String.valueOf(this.slot.getName())
 			    + " is now managed.");
 		}
 
@@ -117,7 +117,7 @@ public class CasinoSlot
 
 	    this.plugin.slotData.togglePlacingController(this.player,
 		    this.slot);
-	    sendMessage(
+	    sendMessageDirectly(
 		    "Punch a new block to serve as this slot machine's controller.");
 
 	} else if (this.args[2].equalsIgnoreCase("deposit")
@@ -143,7 +143,7 @@ public class CasinoSlot
 		this.slot.deposit(amount);
 		this.plugin.economy.withdrawPlayer(this.player,
 			amount.doubleValue());
-		sendMessage(
+		sendMessageDirectly(
 			"Deposited " + amount + " to " + this.slot.getName());
 	    }
 
@@ -155,7 +155,7 @@ public class CasinoSlot
 
 	    if (this.slot.getFunds().doubleValue() < amount.doubleValue())
 	    {
-		sendMessage("Not enough funds in " + this.slot.getName()
+		sendMessageDirectly("Not enough funds in " + this.slot.getName()
 			+ ". Withdrawing all available funds.");
 		amount = this.slot.getFunds();
 	    }
@@ -202,7 +202,7 @@ public class CasinoSlot
 	for (i = (arrayOfString1 = messages).length, b = 0; b < i;)
 	{
 	    String m = arrayOfString1[b];
-	    sendMessage(m);
+	    sendMessageDirectly(m);
 	    b++;
 	}
 

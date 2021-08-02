@@ -42,4 +42,9 @@ public abstract class AnCommand
     {
 	this.plugin.sendMessage(this.player, message);
     }
+    
+    public void sendMessageDirectly(String message)
+    {
+	this.plugin.sendMessageDirectly(this.player, message);
+    }
 }

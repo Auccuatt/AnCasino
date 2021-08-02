@@ -20,7 +20,7 @@ public class CasinoStats
 	    return Boolean.valueOf(true);
 	}
 
-	sendMessage("Statistics for registered types:");
+	sendMessageDirectly("Statistics for registered types:");
 	for (Stat stat : this.plugin.statsData.getStats())
 	{
 
@@ -29,7 +29,7 @@ public class CasinoStats
 	    Double won = stat.getWon();
 	    Double lost = stat.getLost();
 
-	    sendMessage(String.valueOf(type) + " - spins: " + spins
+	    sendMessageDirectly(String.valueOf(type) + " - spins: " + spins
 		    + " - money won: " + won + " - money lost: " + lost);
 	}
 

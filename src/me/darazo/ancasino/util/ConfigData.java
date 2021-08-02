@@ -19,6 +19,7 @@ public class ConfigData
     public File configFile;
     public File slotsFile;
     public File statsFile;
+    public String prefix;
     public String prefixColor;
     public String chatColor;
     public Boolean displayPrefix;
@@ -66,17 +67,19 @@ public class ConfigData
 
     private void setGlobals()
     {
+	this.prefix = this.config
+		.getString("options.chat.plugin-prefix");
 	this.prefixColor = this.config
-		.getString("options.chat.plugin-prefix-color", "&c");
-	this.chatColor = this.config.getString("options.chat.chat-color", "&a");
+		.getString("options.chat.plugin-prefix-color");
+	this.chatColor = this.config.getString("options.chat.chat-color");
 	this.displayPrefix = Boolean.valueOf(this.config
-		.getBoolean("options.chat.display-plugin-prefix", true));
+		.getBoolean("options.chat.display-plugin-prefix"));
 	this.trackStats = Boolean.valueOf(
-		this.config.getBoolean("options.track-statistics", true));
+		this.config.getBoolean("options.track-statistics"));
 	this.allowDiagonals = Boolean.valueOf(this.config
-		.getBoolean("options.allow-diagonal-winnings", true));
+		.getBoolean("options.allow-diagonal-winnings"));
 	this.protection = Boolean.valueOf(
-		this.config.getBoolean("options.enable-slot-protection", true));
+		this.config.getBoolean("options.enable-slot-protection"));
     }
 
     public void saveSlots()
@@ -148,7 +151,7 @@ public class ConfigData
 		+ "\n"
 		+ "create-cost - How much money it costs to create the machine. \n"
 		+ "\n"
-		+ "permission - Doesn't work just yet, will be added in v1.3    \n"
+		+ "permission - Doesn't work just yet, will be added in v1.4    \n"
 		+ "\n"
 		+ "reel - The chances of each block appearing on the next spin  \n"
 		+ "cycle. (e.g. if you have IRON_BLOCK set to 10, and GOLD_BLOCK\n"
@@ -167,12 +170,13 @@ public class ConfigData
 		+ "message - A message can be sent after you win.\n"
 		+ "\n"
 		+ "\n"
-		+ "AnCasino v1.2\n"
+		+ "AnCasino v1.4.1.2\n"
 		+ "@authors: [Auccuatt <auccuatt@gmail.com>, Darazo (Original Creator) <darazo.dawning@gmail.com>]\n"
 		+ "@license: GPLv3\n");
 
-	this.config.set("options.chat.plugin-prefix-color", "&c");
-	this.config.set("options.chat.chat-color", "&a");
+	this.config.set("options.chat.plugin-prefix", "[AnCasino] ");
+	this.config.set("options.chat.plugin-prefix-color", "&5");
+	this.config.set("options.chat.chat-color", "&d");
 	this.config.set("options.chat.display-plugin-prefix", true);
 	this.config.set("options.track-statistics", true);
 	this.config.set("options.allow-diagonal-winnings", true);

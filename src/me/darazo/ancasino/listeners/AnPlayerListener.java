@@ -97,22 +97,22 @@ public class AnPlayerListener
 			    if (this.plugin.permission.isOwner(player, slot)
 				    .booleanValue())
 			    {
-				this.plugin.sendMessage(player,
+				this.plugin.sendMessageDirectly(player,
 					String.valueOf(slot.getName()) + ":");
-				this.plugin.sendMessage(player,
+				this.plugin.sendMessageDirectly(player,
 					"Type: " + slot.getType());
-				this.plugin.sendMessage(player,
+				this.plugin.sendMessageDirectly(player,
 					"Owner: " + slot.getOwner());
-				this.plugin.sendMessage(player, "Managed: "
+				this.plugin.sendMessageDirectly(player, "Managed: "
 					+ slot.isManaged().toString());
 
 				if (slot.isManaged().booleanValue())
 				{
-				    this.plugin.sendMessage(player, "Enabled: "
+				    this.plugin.sendMessageDirectly(player, "Enabled: "
 					    + slot.isEnabled().toString());
-				    this.plugin.sendMessage(player,
+				    this.plugin.sendMessageDirectly(player,
 					    "Funds: " + slot.getFunds());
-				    this.plugin.sendMessage(player,
+				    this.plugin.sendMessageDirectly(player,
 					    "Funds required: "
 						    + this.plugin.typeData
 							    .getMaxPrize(slot
@@ -123,7 +123,7 @@ public class AnPlayerListener
 			    for (String message : this.plugin.typeData
 				    .getType(slot.getType()).getHelpMessages())
 			    {
-				this.plugin.sendMessage(player, message);
+				this.plugin.sendMessageDirectly(player, message);
 			    }
 			}
 
@@ -147,12 +147,12 @@ public class AnPlayerListener
 
 		    this.plugin.slotData.toggleCreatingSlots(player, slot);
 		    this.plugin.slotData.togglePlacingController(player, slot);
-		    this.plugin.sendMessage(player,
+		    this.plugin.sendMessageDirectly(player,
 			    "Punch a block to serve as the controller for this slot machine.");
 		} else
 		{
 
-		    this.plugin.sendMessage(player,
+		    this.plugin.sendMessageDirectly(player,
 			    "Only sides of blocks are valid targets for this operation.");
 
 		}
@@ -168,7 +168,7 @@ public class AnPlayerListener
 		this.plugin.slotData.togglePlacingController(player, slot);
 		this.plugin.slotData.addSlot(slot);
 		this.plugin.slotData.saveSlot(slot);
-		this.plugin.sendMessage(player,
+		this.plugin.sendMessageDirectly(player,
 			"Slot machine set up successfully!");
 	    }
 	}

@@ -27,7 +27,7 @@ public class CasinoList
 
 	    if (this.args[1].equalsIgnoreCase("slots"))
 	    {
-		sendMessage("Registered slot machines:");
+		sendMessageDirectly("Registered slot machines:");
 		for (SlotMachine slot : this.plugin.slotData.getSlots())
 		{
 
@@ -36,7 +36,7 @@ public class CasinoList
 			Block b = slot.getController();
 			String c = String.valueOf(b.getX()) + "," + b.getY()
 				+ "," + b.getZ();
-			sendMessage(String.valueOf(slot.getName()) + " - type: "
+			sendMessageDirectly(String.valueOf(slot.getName()) + " - type: "
 				+ slot.getType() + " - owner: "
 				+ slot.getOwner() + " - managed: "
 				+ slot.isManaged().toString() + " @ " + c);
@@ -46,7 +46,7 @@ public class CasinoList
 
 	    } else if (this.args[1].equalsIgnoreCase("types"))
 	    {
-		sendMessage("Available types:");
+		sendMessageDirectly("Available types:");
 		for (Type type : this.plugin.typeData.getTypes())
 		{
 
@@ -60,17 +60,17 @@ public class CasinoList
 
 	    } else
 	    {
-		sendMessage("Usage:");
-		sendMessage("/casino list slots - List slot machines");
-		sendMessage("/casino list types - List types");
+		sendMessageDirectly("Usage:");
+		sendMessageDirectly("/casino list slots - List slot machines");
+		sendMessageDirectly("/casino list types - List types");
 	    }
 
 	} else
 	{
 
-	    sendMessage("Usage:");
-	    sendMessage("/casino list slots - List slot machines");
-	    sendMessage("/casino list types - List types");
+	    sendMessageDirectly("Usage:");
+	    sendMessageDirectly("/casino list slots - List slot machines");
+	    sendMessageDirectly("/casino list types - List types");
 	}
 	return Boolean.valueOf(true);
     }

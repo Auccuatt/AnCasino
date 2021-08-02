@@ -30,7 +30,7 @@ public class CasinoRemove
 		if (isOwner(slot).booleanValue())
 		{
 		    this.plugin.slotData.removeSlot(slot);
-		    sendMessage("Slot machine removed.");
+		    sendMessageDirectly("Slot machine removed.");
 		} else
 		{
 
@@ -47,8 +47,8 @@ public class CasinoRemove
 	} else
 	{
 
-	    sendMessage("Usage:");
-	    sendMessage("/casino remove <name>");
+	    sendMessageDirectly("Usage:");
+	    sendMessageDirectly("/casino remove <name>");
 	}
 	return Boolean.valueOf(true);
     }
