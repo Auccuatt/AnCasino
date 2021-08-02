@@ -16,7 +16,7 @@ The last update (v1.4.1.2) is now redundant, as this update (v1.4.2) should now 
 
 I actually tested this before releasing this as I don't want people's servers getting deleted unintentionally. If you want those weird situations where you want a fresh world with the slots in the same location (which I don't know why you would want that lol), when you find the location of the slot machine, MAKE sure the controller (the button you press to "roll it") is a note block, if it's not use world guard to change it into one, and then the slot will behave as it was created with commands.
 
-Note: This loads EVERY world that each slow machine is in at the start of the server, use /casino reload from now on, DON'T reload the server.
+Note: This loads EVERY world that each slot machine is in at the start of the server, use /casino reload from now on, DON'T reload the server.
 
 ---------------------------------------------------
 
