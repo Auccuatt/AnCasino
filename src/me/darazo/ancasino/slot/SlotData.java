@@ -10,6 +10,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.World;
+import org.bukkit.WorldCreator;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
 import org.bukkit.entity.Player;
@@ -73,8 +74,7 @@ public class SlotData
 	    if (!slots.isEmpty())
 		for (String name : slots)
 		{
-		    if(Bukkit.getWorld(this.plugin.configData.slots.getString("slots." + name + ".world")) != null)
-			loadSlot(name);
+		    loadSlot(name);
 		    i = Integer.valueOf(i.intValue() + 1);
 		}
 	}
@@ -135,7 +135,7 @@ public class SlotData
 	List<String> xyz = this.plugin.configData.slots
 		.getStringList("slots." + name + ".location");
 	ArrayList<Block> blocks = new ArrayList<Block>();
-	World world = Bukkit.getWorld(this.plugin.configData.slots.getString("slots." + name + ".world"));
+	World world = Bukkit.getWorld(this.plugin.getServer().createWorld(new WorldCreator(this.plugin.configData.slots.getString("slots." + name + ".world"))).getName());
 	for (String coord : xyz)
 	{
 	    String[] b = coord.split("\\,");

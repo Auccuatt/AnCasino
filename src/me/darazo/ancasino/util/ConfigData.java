@@ -170,7 +170,7 @@ public class ConfigData
 		+ "message - A message can be sent after you win.\n"
 		+ "\n"
 		+ "\n"
-		+ "AnCasino v1.4.1.2\n"
+		+ "AnCasino v1.4.2\n"
 		+ "@authors: [Auccuatt <auccuatt@gmail.com>, Darazo (Original Creator) <darazo.dawning@gmail.com>]\n"
 		+ "@license: GPLv3\n");
 
