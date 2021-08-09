@@ -8,6 +8,12 @@ Changelog:
 
 ---------------------------------------------------
 
+Version 1.4.2.1:
+
+Compatible with versions 1.13, 1.14, 1.15, 1.16, 1.17.1, and everything in between.
+
+---------------------------------------------------
+
 Version 1.4.2:
 
 What I discovered, when playing around with Multiverse is what was actually happening when you use slots on separate worlds, at any given time, the server only loads one world at server restart time, so what is required of AnCasino is that the the other worlds need to be preloaded to not to be considered "null" when the slots themselves get loaded into the server.
